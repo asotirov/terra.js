@@ -22,11 +22,12 @@ export interface PaginationOptions {
 
 export class APIRequester {
   private axios: AxiosInstance;
-  constructor(baseURL: string) {
+  constructor(baseURL: string, headers: Record<string, string> = {}) {
     this.axios = Axios.create({
       baseURL,
       headers: {
-        Accept: 'application/json',
+        ...headers,
+        Accept: 'application/json',  
       },
       timeout: 30000,
     });
