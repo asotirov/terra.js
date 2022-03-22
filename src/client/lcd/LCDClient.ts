@@ -28,7 +28,7 @@ export interface LCDClientConfig {
    * The base URL to which LCD requests will be made.
    */
   URL: string;
-
+  headers?: Record<string, string>;
   /**
    * Chain ID of the blockchain to connect to.
    */
@@ -116,7 +116,7 @@ export class LCDClient {
       ...config,
     };
 
-    this.apiRequester = new APIRequester(this.config.URL);
+    this.apiRequester = new APIRequester(this.config.URL, this.config.headers ||  {}); 
 
     // instantiate APIs
     this.auth = new AuthAPI(this.apiRequester);
